@@ -1,0 +1,94 @@
+1. Cities
+
+CREATE TABLE Cities
+(
+    city_name VARCHAR(255) NOT NULL PRIMARY KEY,
+    UNIQUE (city_name)
+);
+
+2. Categories
+
+CREATE TABLE Categories
+(
+    category_name VARCHAR(255) NOT NULL PRIMARY KEY,
+    UNIQUE (category_name)
+);
+
+3. Manufacturers
+
+CREATE TABLE Manufacturers
+(
+    manufacturer_country VARCHAR(255) NOT NULL PRIMARY KEY,
+    UNIQUE (manufacturer_country)
+);
+
+4. Shops
+
+CREATE TABLE Shops
+(
+    shop_id SERIAL PRIMARY KEY,
+    shop_name VARCHAR(255) NOT NULL,
+    adress VARCHAR(255) NOT NULL,
+    city_name VARCHAR(255) NOT NULL REFERENCES Cities(city_name) ON UPDATE CASCADE,
+    UNIQUE (adress)
+);
+
+5. Products
+
+CREATE TABLE Products
+(
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    category_name VARCHAR(255) NOT NULL REFERENCES Categories(category_name) ON UPDATE CASCADE,
+    manufacturer_country VARCHAR(255) NOT NULL REFERENCES Manufacturers(manufacturer_country) ON UPDATE CASCADE,
+    cost real NOT NULL,
+    CHECK (cost > 0)
+);
+
+6. Availability
+
+CREATE TABLE Availability
+(
+    product_id integer NOT NULL REFERENCES Products(product_id) ON UPDATE CASCADE
+                                                                ON DELETE CASCADE,
+    shop_id integer NOT NULL REFERENCES Shops(shop_id) ON UPDATE CASCADE
+                                                       ON DELETE CASCADE
+);
+
+7. Accounts
+
+CREATE TABLE Accounts
+(
+    account_id SERIAL PRIMARY KEY,
+    nickname VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    UNIQUE (nickname),
+    CHECK (length(password) >= 8),
+    CHECK (length(nickname) >= 5)
+);
+
+8. Purchases
+
+CREATE TABLE Purchases
+(
+    purchase_id SERIAL PRIMARY KEY
+);
+
+9. Shopping_list
+
+CREATE TABLE Shopping_list
+(
+    account_id integer NOT NULL REFERENCES Accounts(account_id) ON DELETE CASCADE,
+    purchase_id integer NOT NULL REFERENCES Purchases(purchase_id) ON DELETE CASCADE
+);
+
+10. Check_tape
+
+CREATE TABLE Check_tape
+(
+    purchase_id integer NOT NULL REFERENCES Purchases(purchase_id) ON DELETE CASCADE,
+    product_id integer NOT NULL REFERENCES Products(product_id) ON UPDATE CASCADE,
+    amount smallint NOT NULL,
+    CHECK (amount > 0)
+);
