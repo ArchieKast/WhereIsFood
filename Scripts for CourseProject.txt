@@ -6,46 +6,30 @@ CREATE TABLE Cities
     UNIQUE (city_name)
 );
 
-2. Categories
-
-CREATE TABLE Categories
-(
-    category_name VARCHAR(255) NOT NULL PRIMARY KEY,
-    UNIQUE (category_name)
-);
-
-3. Manufacturers
-
-CREATE TABLE Manufacturers
-(
-    manufacturer_country VARCHAR(255) NOT NULL PRIMARY KEY,
-    UNIQUE (manufacturer_country)
-);
-
-4. Shops
+2. Shops
 
 CREATE TABLE Shops
 (
     shop_id SERIAL PRIMARY KEY,
     shop_name VARCHAR(255) NOT NULL,
     adress VARCHAR(255) NOT NULL,
-    city_name VARCHAR(255) NOT NULL REFERENCES Cities(city_name) ON UPDATE CASCADE,
+    city_name VARCHAR(255) NOT NULL,
     UNIQUE (adress)
 );
 
-5. Products
+3. Products
 
 CREATE TABLE Products
 (
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
-    category_name VARCHAR(255) NOT NULL REFERENCES Categories(category_name) ON UPDATE CASCADE,
-    manufacturer_country VARCHAR(255) NOT NULL REFERENCES Manufacturers(manufacturer_country) ON UPDATE CASCADE,
+    category VARCHAR(255) NOT NULL,
     cost real NOT NULL,
+    UNIQUE (product_name),
     CHECK (cost > 0)
 );
 
-6. Availability
+4. Availability
 
 CREATE TABLE Availability
 (
@@ -55,7 +39,7 @@ CREATE TABLE Availability
                                                        ON DELETE CASCADE
 );
 
-7. Accounts
+5. Accounts
 
 CREATE TABLE Accounts
 (
@@ -68,14 +52,14 @@ CREATE TABLE Accounts
     CHECK (length(nickname) >= 5)
 );
 
-8. Purchases
+6. Purchases
 
 CREATE TABLE Purchases
 (
     purchase_id SERIAL PRIMARY KEY
 );
 
-9. Shopping_list
+7. Shopping_list
 
 CREATE TABLE Shopping_list
 (
@@ -83,7 +67,7 @@ CREATE TABLE Shopping_list
     purchase_id integer NOT NULL REFERENCES Purchases(purchase_id) ON DELETE CASCADE
 );
 
-10. Check_tape
+8. Check_tape
 
 CREATE TABLE Check_tape
 (
