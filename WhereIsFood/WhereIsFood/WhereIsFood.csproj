@@ -53,8 +53,10 @@
   <ItemGroup>
     <Compile Include="ElementsOfDB\Account.cs" />
     <Compile Include="ElementsOfDB\Availabity.cs" />
+    <Compile Include="ElementsOfDB\Category.cs" />
     <Compile Include="ElementsOfDB\CheckTape.cs" />
     <Compile Include="ElementsOfDB\City.cs" />
+    <Compile Include="ElementsOfDB\DataFrame.cs" />
     <Compile Include="ElementsOfDB\ElementForInsert.cs" />
     <Compile Include="ElementsOfDB\Product.cs" />
     <Compile Include="ElementsOfDB\Purchase.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="ElementsOfDB\ShoppingList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sites\AlphabetOfTaste.cs" />
+    <Compile Include="Sites\Site.cs" />
     <Compile Include="WorkWithDB.cs" />
   </ItemGroup>
   <ItemGroup>

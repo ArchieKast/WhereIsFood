@@ -26,10 +26,41 @@ namespace WhereIsFood
             _conn.Close();
         }
 
-        public void Insert(ElementForInsert element)
+        public int Insert(ElementForInsert element)
         {
             NpgsqlCommand command = new NpgsqlCommand(element.CommandText, _conn);
-            NpgsqlDataReader reader = command.ExecuteReader();
+            return Convert.ToInt32(command.ExecuteScalar());
+        }
+
+        public void Fill(DataFrame dataFrame)
+        {
+            List<int> productsId = new List<int>();
+            foreach (var product in dataFrame.Products)
+            {
+                try
+                {
+                    Insert(new Category(product.Category));
+                }
+                finally
+                {
+                    productsId.Add(Insert(product));
+                }
+            }
+            foreach (var shop in dataFrame.Shops)
+            {
+                try
+                {
+                    Insert(new City(shop.City));
+                }
+                finally
+                {
+                    int shopId = Insert(shop);
+                    foreach (var productId in productsId)
+                    {
+                        Insert(new Availabity(productId, shopId));
+                    }
+                }
+            }
         }
  
         #endregion

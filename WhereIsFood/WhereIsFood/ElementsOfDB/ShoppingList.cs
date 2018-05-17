@@ -18,7 +18,7 @@ namespace WhereIsFood.ElementsOfDB
         {
             _account_id = account_id;
             _purchase_id = purchase_id;
-            _commandText = "insert into shopping_list(account_id, purchase_id) values(" + account_id + ", " + purchase_id + ")";
+            _commandText = "insert into shopping_list(account_id, purchase_id) values(" + account_id + ", " + purchase_id + ");";
         }
         #endregion
     }

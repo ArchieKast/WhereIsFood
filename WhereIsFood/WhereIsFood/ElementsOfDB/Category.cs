@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace WhereIsFood.ElementsOfDB
 {
-    public class City : ElementForInsert
+    public class Category : ElementForInsert
     {
         #region Fields
         private string _name;
         #endregion
 
         #region Constructors
-        public City(string name)
+        public Category(string name)
         {
             _name = name;
-            _commandText = "insert into cities(city_name) values('" + name + "');";
+            _commandText = "insert into categories(category_name) values('" + name + "');";
         }
         #endregion
     }

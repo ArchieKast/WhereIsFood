@@ -21,7 +21,7 @@ namespace WhereIsFood.ElementsOfDB
             _password = password;
             _full_name = full_name;
             _commandText = "insert into accounts(account_id, nickname, password, full_name) values(default, '" + nickname + "', '" + password + "', ";
-            _commandText += full_name == null ? "null" + ")" : "'" + full_name + "')";
+            _commandText += full_name == null ? "null" + ");" : "'" + full_name + "');";
         }
         #endregion
     }

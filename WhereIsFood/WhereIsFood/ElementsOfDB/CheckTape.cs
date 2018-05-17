@@ -20,7 +20,7 @@ namespace WhereIsFood.ElementsOfDB
             _purchase_id = purchase_id;
             _product_id = product_id;
             _amount = amount;
-            _commandText = "insert into check_tape(purchase_id, product_id, amount) values("+ purchase_id + ", " + product_id + ", " + amount + ")";
+            _commandText = "insert into check_tape(purchase_id, product_id, amount) values("+ purchase_id + ", " + product_id + ", " + amount + ");";
         }
         #endregion
     }
