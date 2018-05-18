@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Npgsql;
 using System.Data.Common;
 using HtmlAgilityPack;
-using WhereIsFood.ElementsOfDB;
+using WhereIsProduct.ElementsOfDB;
+using WhereIsProduct.Sites;
 
-namespace WhereIsFood
+namespace WhereIsProduct
 {
     class Program
     {
@@ -16,6 +17,9 @@ namespace WhereIsFood
         {
             WorkWithDB db = new WorkWithDB();
             db.Open();
+
+            AlphabetOfTaste site = new AlphabetOfTaste("https://av.ru");
+            db.Fill(site);
 
             Console.ReadKey();
             db.Close();

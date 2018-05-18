@@ -56,7 +56,6 @@
     <Compile Include="ElementsOfDB\Category.cs" />
     <Compile Include="ElementsOfDB\CheckTape.cs" />
     <Compile Include="ElementsOfDB\City.cs" />
-    <Compile Include="ElementsOfDB\DataFrame.cs" />
     <Compile Include="ElementsOfDB\ElementForInsert.cs" />
     <Compile Include="ElementsOfDB\Product.cs" />
     <Compile Include="ElementsOfDB\Purchase.cs" />

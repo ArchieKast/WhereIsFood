@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhereIsFood.ElementsOfDB
+namespace WhereIsProduct.ElementsOfDB
 {
     public class Availabity : ElementForInsert
     {
         #region Fields
         private int _product_id;
         private int _shop_id;
+        #endregion
+
+        #region Properties
+        public int ProductId { get { return _product_id; } }
+        public int ShopId { get { return _shop_id; } }
         #endregion
 
         #region Constructors

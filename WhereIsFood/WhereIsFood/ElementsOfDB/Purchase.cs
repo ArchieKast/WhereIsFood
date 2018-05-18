@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhereIsFood.ElementsOfDB
+namespace WhereIsProduct.ElementsOfDB
 {
     public class Purchase : ElementForInsert
     {

@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhereIsFood.ElementsOfDB
+namespace WhereIsProduct.ElementsOfDB
 {
     public class ShoppingList : ElementForInsert
     {
         #region Fields
         private int _account_id;
         private int _purchase_id;
+        #endregion
+
+        #region Properties
+        public int AccountId { get { return _account_id; } }
+        public int PurchaseId { get { return _purchase_id; } }
         #endregion
 
         #region Constructors

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhereIsFood.ElementsOfDB
+namespace WhereIsProduct.ElementsOfDB
 {
     public class CheckTape : ElementForInsert
     {
@@ -12,6 +12,12 @@ namespace WhereIsFood.ElementsOfDB
         private int _purchase_id;
         private int _product_id;
         private int _amount;
+        #endregion
+
+        #region Properties
+        public int PurchaseId { get { return _purchase_id; } }
+        public int ProductId { get { return _product_id; } }
+        public int Amount { get { return _amount; } }
         #endregion
 
         #region Constructors

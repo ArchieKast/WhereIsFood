@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhereIsFood.ElementsOfDB
+namespace WhereIsProduct.ElementsOfDB
 {
     public class Account : ElementForInsert
     {
@@ -12,6 +12,11 @@ namespace WhereIsFood.ElementsOfDB
         private string _nickname;
         private string _password;
         private string _full_name;
+        #endregion
+
+        #region Properties
+        public string Nickname { get { return _nickname; } }
+        public string FullName { get { return _full_name; } }
         #endregion
 
         #region Constructors

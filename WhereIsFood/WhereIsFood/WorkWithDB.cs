@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 using System.Data.Common;
-using WhereIsFood.ElementsOfDB;
+using WhereIsProduct.ElementsOfDB;
+using WhereIsProduct.Sites;
 
-namespace WhereIsFood
+namespace WhereIsProduct
 {
     public class WorkWithDB
     {
@@ -32,10 +33,10 @@ namespace WhereIsFood
             return Convert.ToInt32(command.ExecuteScalar());
         }
 
-        public void Fill(DataFrame dataFrame)
+        public void Fill(Site site)
         {
             List<int> productsId = new List<int>();
-            foreach (var product in dataFrame.Products)
+            foreach (var product in  site.GetProducts())
             {
                 try
                 {
@@ -46,7 +47,7 @@ namespace WhereIsFood
                     productsId.Add(Insert(product));
                 }
             }
-            foreach (var shop in dataFrame.Shops)
+            foreach (var shop in site.GetShops())
             {
                 try
                 {
@@ -62,7 +63,6 @@ namespace WhereIsFood
                 }
             }
         }
- 
         #endregion
     }
 }

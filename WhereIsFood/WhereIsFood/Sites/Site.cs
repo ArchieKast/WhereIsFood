@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WhereIsProduct.ElementsOfDB;
 
-namespace WhereIsFood.Sites
+namespace WhereIsProduct.Sites
 {
-    public abstract class Site
+    public interface Site
     {
-        #region Fields
-        protected List<string> _referenceList;
+        #region Properties
+        List<string> ProductsReferences { get; }
+        List<string> ShopsReferences { get; }
         #endregion
 
-        #region Properties
-        public List<string> ReferenceList { get { return _referenceList; } }
+        #region Methods
+        List<Product> GetProducts();
+        List<Shop> GetShops();
         #endregion
     }
 }
