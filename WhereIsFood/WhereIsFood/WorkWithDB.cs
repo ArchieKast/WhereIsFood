@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Npgsql;
-using System.Data.Common;
 using WhereIsProduct.ElementsOfDB;
 using WhereIsProduct.Sites;
 
@@ -30,7 +26,16 @@ namespace WhereIsProduct
         public int Insert(ElementForInsert element)
         {
             NpgsqlCommand command = new NpgsqlCommand(element.CommandText, _conn);
-            return Convert.ToInt32(command.ExecuteScalar());
+            int id = 0;
+            try
+            {
+                id = Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch
+            {
+                id = 0;
+            }
+            return id;
         }
 
         public void Fill(Site site)
@@ -42,10 +47,8 @@ namespace WhereIsProduct
                 {
                     Insert(new Category(product.Category));
                 }
-                finally
-                {
-                    productsId.Add(Insert(product));
-                }
+                catch {}
+                productsId.Add(Insert(product));
             }
             foreach (var shop in site.GetShops())
             {
@@ -53,15 +56,14 @@ namespace WhereIsProduct
                 {
                     Insert(new City(shop.City));
                 }
-                finally
+                catch {}
+                int shopId = Insert(shop);
+                foreach (var productId in productsId)
                 {
-                    int shopId = Insert(shop);
-                    foreach (var productId in productsId)
-                    {
-                        Insert(new Availabity(productId, shopId));
-                    }
+                    Insert(new Availabity(productId, shopId));
                 }
             }
+            Console.WriteLine("Вставка завершена!");
         }
         #endregion
     }

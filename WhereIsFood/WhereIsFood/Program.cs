@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Npgsql;
-using System.Data.Common;
-using HtmlAgilityPack;
-using WhereIsProduct.ElementsOfDB;
 using WhereIsProduct.Sites;
 
 namespace WhereIsProduct
@@ -18,8 +10,8 @@ namespace WhereIsProduct
             WorkWithDB db = new WorkWithDB();
             db.Open();
 
-            AlphabetOfTaste site = new AlphabetOfTaste("https://av.ru");
-            db.Fill(site);
+            //AlphabetOfTaste site = new AlphabetOfTaste("https://av.ru");
+            //db.Fill(site);
 
             Console.ReadKey();
             db.Close();
