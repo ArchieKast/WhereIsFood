@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Npgsql;
 using WhereIsProduct.ElementsOfDB;
 using WhereIsProduct.Sites;
+using System.Data.Common;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace WhereIsProduct
 {
@@ -64,6 +68,28 @@ namespace WhereIsProduct
                 }
             }
             Console.WriteLine("Вставка завершена!");
+        }
+
+        public JArray Find(string substring)
+        {
+            string commandText = "select * from products where product_name ~* '.*" + substring + "*.';";
+            NpgsqlCommand command = new NpgsqlCommand(commandText, _conn);
+            NpgsqlDataReader reader = command.ExecuteReader();
+            JArray jsonArray = new JArray();
+            var count = 0;
+            foreach (DbDataRecord item in reader)
+            {
+                JObject jsonItem = new JObject();
+                jsonItem.Add("product_name", item["product_name"].ToString());
+                jsonItem.Add("category_name", item["category_name"].ToString());
+                jsonItem.Add("cost", item["cost"].ToString());
+                jsonArray.Add(jsonItem);
+                count++;
+            }
+            JObject jItem = new JObject();
+            jItem.Add("count", count);
+            jsonArray.AddFirst(jItem);
+            return reader.HasRows ? jsonArray : null;
         }
         #endregion
     }

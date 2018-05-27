@@ -1,4 +1,6 @@
-﻿namespace WhereIsProduct.ElementsOfDB
+﻿using System.Runtime.Serialization;
+
+namespace WhereIsProduct.ElementsOfDB
 {
     public abstract class ElementForInsert
     {
